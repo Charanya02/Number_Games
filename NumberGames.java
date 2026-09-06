@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class NumberGames {
 
-    public void GuessTheNumber(Scanner scanner) {
+    public void guessTheNumber(Scanner scanner) {
         int numberToGuess = (int) (Math.random() * 100) + 1;
         System.out.println("Welcome to Guess the Number!");
         System.out.println("I have selected a number between 1 and 100. Try to guess it! Enter 0 to exit the game.");
@@ -24,7 +24,7 @@ public class NumberGames {
         }
     }
 
-    public void HigherorLower(Scanner scanner) {
+    public void higherOrLower(Scanner scanner) {
         int number = (int) (Math.random() * 100) + 1;
         System.out.println("Welcome to Higher or Lower!");
         System.out.println("I have selected a number between 1 and 100. Try to guess it! Enter 0 to exit the game.");
@@ -45,28 +45,62 @@ public class NumberGames {
         }
     }
 
+    public void stonePaperScissor(Scanner scanner) {
+        System.out.println("Welcome to Stone Paper Scissors!");
+        System.out.println("Enter your choice (stone[1], paper[2], scissors[3]) or 'exit[0]' to quit");
+        int userChoice = scanner.nextInt();
+        int computerChoice = (int) (Math.random() * 3) + 1;
+        while (userChoice != 0) {
+            if (userChoice == computerChoice) {
+                System.out.println("It's a tie! Try again or press 0 to exit");
+            } else {
+                if (userChoice == 1 && computerChoice == 2) {
+                    System.out.println("Computer chose Paper and you chose Stone. You lose!");
+                } else if (userChoice == 1 && computerChoice == 3) {
+                    System.out.println("Computer chose Scissors and you chose Stone. You win!");
+                } else if (userChoice == 2 && computerChoice == 1) {
+                    System.out.println("Computer chose stone and you chose paper. You win!");
+                } else if (userChoice == 2 && computerChoice == 3) {
+                    System.out.println("Computer chose scissor and you chose paper. You lose!");
+                } else if (userChoice == 3 && computerChoice == 1) {
+                    System.out.println("Computer chose stone and you chose scissor. You lose!");
+                } else {
+                    System.out.println("Computer chose paper and you chose scissor. You win!");
+                }
+
+            }
+            userChoice = scanner.nextInt();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
+
         NumberGames game = new NumberGames();
         System.out.println("Welcome to Number Games!");
         System.out.println("Choose a game to play:");
         System.out.println("1. Guess the Number");
         System.out.println("2. Higher or Lower");
+        System.out.println("3. Rock Paper Scissors");
         System.out.println("Enter 0 to exit the program.");
-        System.out.print("Enter your choice (1 or 2): ");
+        System.out.print("Enter your choice (1 or 2 or 3): ");
         int gameChoice = scanner.nextInt();
-        switch(gameChoice)
-        {
-            case 1:
-                game.GuessTheNumber(scanner);
-                break;
-            case 2:
-                game.HigherorLower(scanner);
-                break;
-            case 0:
+        while (gameChoice != 0) {
+            if (gameChoice == 1)
+                game.guessTheNumber(scanner);
+            if (gameChoice == 2)
+                game.higherOrLower(scanner);
+            if (gameChoice == 3)
+                game.stonePaperScissor(scanner);
+            else
                 System.out.println("Exiting the program. Goodbye!");
-                break;         
+            System.out.println("Choose a game to play:");
+            System.out.println("1. Guess the Number");
+            System.out.println("2. Higher or Lower");
+            System.out.println("3. Rock Paper Scissors");
+            System.out.println("Enter 0 to exit the program.");
+            System.out.print("Enter your choice (1 or 2 or 3): ");
+            gameChoice = scanner.nextInt();
         }
         scanner.close();
     }
