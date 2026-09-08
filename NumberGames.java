@@ -49,8 +49,8 @@ public class NumberGames {
         System.out.println("Welcome to Stone Paper Scissors!");
         System.out.println("Enter your choice (stone[1], paper[2], scissors[3]) or 'exit[0]' to quit");
         int userChoice = scanner.nextInt();
-        int computerChoice = (int) (Math.random() * 3) + 1;
         while (userChoice != 0) {
+            int computerChoice = (int) (Math.random() * 3) + 1;
             if (userChoice == computerChoice) {
                 System.out.println("It's a tie! Try again or press 0 to exit");
             } else {
@@ -88,12 +88,10 @@ public class NumberGames {
         while (gameChoice != 0) {
             if (gameChoice == 1)
                 game.guessTheNumber(scanner);
-            if (gameChoice == 2)
+            else if (gameChoice == 2)
                 game.higherOrLower(scanner);
-            if (gameChoice == 3)
-                game.stonePaperScissor(scanner);
             else
-                System.out.println("Exiting the program. Goodbye!");
+                game.stonePaperScissor(scanner);
             System.out.println("Choose a game to play:");
             System.out.println("1. Guess the Number");
             System.out.println("2. Higher or Lower");
@@ -102,6 +100,7 @@ public class NumberGames {
             System.out.print("Enter your choice (1 or 2 or 3): ");
             gameChoice = scanner.nextInt();
         }
+        System.out.println("Exiting the program. Goodbye!");
         scanner.close();
     }
 }
